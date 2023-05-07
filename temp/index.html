@@ -1,36 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>File Uploader</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="container">
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>File Upload Example</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form-container">
       <h1>Upload Images</h1>
-      <form>
-        <div class="form-group">
-          <label for="cloth">Select cloth image:</label>
-          <input type="file" id="cloth" />
+      <form id="file-upload-form">
+        <div class="form-field">
+          <label class="form-label" for="cloth-image">Select cloth image:</label>
+          <input class="form-input" type="file" name="cloth" id="cloth-image">
         </div>
-        <div class="form-group">
-          <label for="person">Select person image:</label>
-          <input type="file" id="person" />
+        <div class="form-field">
+          <label class="form-label" for="person-image">Select person image:</label>
+          <input class="form-input" type="file" name="person" id="person-image">
         </div>
-        <button id="upload-btn" disabled>Upload</button>
+        <button class="form-button" type="submit" id="upload-button" disabled>Upload</button>
       </form>
-      <div class="preview">
-        <h2>Selected Images</h2>
-        <div class="preview-item">
-          <p class="preview-label">Selected cloth image:</p>
-          <p class="preview-name" id="cloth-name"></p>
-        </div>
-        <div class="preview-item">
-          <p class="preview-label">Selected person image:</p>
-          <p class="preview-name" id="person-name"></p>
-        </div>
-      </div>
     </div>
-    <script src="app.js"></script>
-  </body>
-</html>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html

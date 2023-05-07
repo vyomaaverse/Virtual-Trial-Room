@@ -1,32 +1,33 @@
+const clothImageInput = document.getElementById('cloth-image');
+const personImageInput = document.getElementById('person-image');
+const uploadButton = document.getElementById('upload-button');
 let clothName, personName;
 
-function handleFileUpload(event) {
-  const { name, files } = event.target;
-  if (name === 'cloth') {
-    clothName = files[0].name;
-  } else if (name === 'person') {
-    personName = files[0].name;
-  }
+clothImageInput.addEventListener('change', function() {
+    clothName = clothImageInput.files[0].name;
+    checkFormValidity();
+});
+
+personImageInput.addEventListener('change', function() {
+    personName = personImageInput.files[0].name;
+    checkFormValidity();
+});
+
+function checkFormValidity() {
+    if (clothName && personName) {
+        uploadButton.removeAttribute('disabled');
+    } 
+    else {
+        uploadButton.setAttribute('disabled', true);
+      }
 }
 
-function handleSubmit(event) {
-  event.preventDefault();
-  console.log('Cloth name:', clothName);
-  console.log('Person name:', personName);
-}
-
-const clothInput = document.getElementById('cloth-input');
-const personInput = document.getElementById('person-input');
-const uploadButton = document.getElementById('upload-button');
-
-clothInput.addEventListener('change', handleFileUpload);
-personInput.addEventListener('change', handleFileUpload);
-
-uploadButton.addEventListener('click', (event) => {
-  event.preventDefault();
-  if (clothName && personName) {
-    handleSubmit(event);
-  } else {
-    alert('Please select both images');
-  }
+document.getElementById('file-upload-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    console.log('Cloth name:', clothName);
+    console.log('Person name:', personName);
+    this.reset();
+    uploadButton.setAttribute('disabled', true);
+    clothName = null;
+    personName = null;
 });

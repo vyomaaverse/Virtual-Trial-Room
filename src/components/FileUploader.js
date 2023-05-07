@@ -11,19 +11,28 @@ import {
   VStack,
 } from '@chakra-ui/react';
 
+
+var cloth, person;
+
 function FileUploader() {
-  const [file, setFile] = useState(null);
-  const [fileName, setFileName] = useState('');
+  const [clothName, setClothName] = useState('');
+  const [personName, setPersonName] = useState('');
 
   function handleFileUpload(event) {
-    setFile(event.target.files[0]);
-    setFileName(event.target.files[0].name);
+    const { name, files } = event.target;
+    if (name === 'cloth') {
+      setClothName(files[0].name);
+    } else if (name === 'person') {
+      setPersonName(files[0].name);
+    }
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(file);
-    console.log(fileName);
+    console.log('Cloth name:', clothName);
+    console.log('Person name:', personName);
+    cloth = clothName;
+    person = personName;
   }
 
   return (
@@ -36,12 +45,16 @@ function FileUploader() {
         </Box>
         <form onSubmit={handleSubmit} style={{ width: '100%' }}>
           <FormControl>
-            <FormLabel fontFamily="Montserrat" fontWeight="bold">Select an image:</FormLabel>
-            <Input type="file" onChange={handleFileUpload} mb={4} />
+            <FormLabel fontFamily="Montserrat" fontWeight="bold">Select cloth image:</FormLabel>
+            <Input type="file" name="cloth" onChange={handleFileUpload} mb={4} />
+          </FormControl>
+          <FormControl>
+            <FormLabel fontFamily="Montserrat" fontWeight="bold">Select person image:</FormLabel>
+            <Input type="file" name="person" onChange={handleFileUpload} mb={4} />
           </FormControl>
           <Button
             type="submit"
-            disabled={!file}
+            disabled={!clothName || !personName}
             w="24vw"
             bg="#008CBA"
             color="white"
@@ -55,13 +68,23 @@ function FileUploader() {
             Upload
           </Button>
         </form>
-        {fileName && (
+        {clothName && (
           <Box w="100%" bg="#EDEDED" p={6} rounded="xl">
             <Text fontSize="sm" fontWeight="bold" mb={2}>
-              Selected file:
+              Selected cloth image:
             </Text>
             <Text fontSize="md" fontFamily="Montserrat">
-              {fileName}
+              {clothName}
+            </Text>
+          </Box>
+        )}
+        {personName && (
+          <Box w="100%" bg="#EDEDED" p={6} rounded="xl">
+            <Text fontSize="sm" fontWeight="bold" mb={2}>
+              Selected person image:
+            </Text>
+            <Text fontSize="md" fontFamily="Montserrat">
+              {personName}
             </Text>
           </Box>
         )}
@@ -71,3 +94,4 @@ function FileUploader() {
 }
 
 export default FileUploader;
+export { cloth, person};

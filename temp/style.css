@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  label {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  input[type="file"] {
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  button {
+    background-color: #008cba;
+    border: none;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #007a9d;
+  }
+  
+  #file-names {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+  }
+  
